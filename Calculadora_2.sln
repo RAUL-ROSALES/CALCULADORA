@@ -1,25 +1,152 @@
-﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Calculadora_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*en el main nomas instacio la clase pricipal y de ahi la mando a llamar 
+             para que ejecute todo lo que tiene*/
+            Pricipal b = new Pricipal();
+            b.Bienvenida();
+            b.Obtener_datos();
+            Console.ReadKey();
+            /*posdata soy malo espresando como hize las cosas*/
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Calculadora_2
+{
+   public class Reposuma
+    {
+        /*en esta clase de reposuma encapsulo mis variables para poder invocarlas desde cualquier otra clase*/
+        private double valor1,valor2;
+        public double Valor1
+        {
+            get { return valor1; }
+            set { valor1 = value; }
+        }
+        public double Valor2
+        {
+            get { return valor2; }
+            set { valor2 = value; }
+        }
+       
+   }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Calculadora_2
+{
+   public class Pricipal
+    {
+        /*aqui cree una clase que llame pricipal
+         y aqui cree 3 metodos
+         que son la bienvenida uno para capturar los datos que ingrese el usuario para 
+         realizar la operacion que el va a desear hacer*/
+        Operaciones s = new Operaciones();//instacio la clase operacion para poder mandar a invocar los metodos 
+        Reposuma mos = new Reposuma();//aqui instacio la clase repo para poder usar las variables que encapsule  
+        public void Bienvenida()
+        {
+            Console.WriteLine("Bienvenido a Mi Programa");
+        }
+        public void Obtener_datos()
+        {
+            /*en este metodo pido al usuiaro que ingrese los datos en valiabres que ya tengo encapsuladas
+             para poder usar las variabres encapsuladas instancio la clase*/
+            Console.WriteLine("Ingrese Datos");
+            Console.WriteLine("ingrese el primer numero");
+            mos.Valor1 = double.Parse(Console.ReadLine());//aqui le estoy asignando el primer valor a mi primer variable encapsulada
+            Console.WriteLine("----------------------------");
+            Console.WriteLine("ingrese el segundo numero");
+            mos.Valor2 = double.Parse(Console.ReadLine());//aqui igual pido el segundo valor en mi variabre encapsulada
+            Menu();//aqui mando a llamar el menu para que ejecute todo lo que contiene 
+        }
+        public void Menu()
+        {
+            int opc;//creo la variable para que el usuario pueda elejir una opcion 
+            Console.WriteLine("1-Suma");
+            Console.WriteLine("2-Resta");
+            Console.WriteLine("3-Multiplicacion");
+            Console.WriteLine("4-Division");
+            Console.WriteLine("ingrese la operacion que desea realizar");
+            opc = Convert.ToInt32(Console.ReadLine());
+            switch (opc)
+            {
+                case 1:
+                    double res = mos.Valor1 + mos.Valor2;
+                    Console.WriteLine("El resultado de la suma es : "+res);
+                    break;
+                case 2:
+                    double res2 = mos.Valor1 - mos.Valor2;
+                    Console.WriteLine("El resultado de la resta es : " + res2);
+                    break;
+                case 3:
+                    double res3 = mos.Valor1 * mos.Valor2;
+                    Console.WriteLine("El resultado de la multiplicacion es : " + res3);
+                    break;
+                case 4:
+                    double res4 = mos.Valor1 / mos.Valor2;
+                    /*creo una variable para poder almacenar el resultado de la suma de las variables 
+                     encapsuladas*/
+                    Console.WriteLine("El resultado de la division es : " + res4);
+                    break;
+                default:
+                    Console.WriteLine("opcion no valiadad");
+                    Console.WriteLine("regresando al menu");
+                    Menu();
+                    break;
+            }
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Calculadora_2
+{
+   public class Operaciones
+    {
+        public double Suma(double a, double b)
+        {
+            double res;
+            res = a + b;
+            return res;
+        }
+        public double Resta(double a, double b)
+        {
+            double res = a-b;
+            return res;
+        }
+        public double Multiplicacion(double a, double b)
+        {
+            double res= a*b;
+            return res; 
+        }
+        public double Division(double a, double b)
+        {
+            double res = a/b;
+            return res;
+        }
+    }
+}
+
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculadora_2", "Calculadora_2\Calculadora_2.csproj", "{887156E3-F55A-4B2E-86A2-044B918EFBC1}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{887156E3-F55A-4B2E-86A2-044B918EFBC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{887156E3-F55A-4B2E-86A2-044B918EFBC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{887156E3-F55A-4B2E-86A2-044B918EFBC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{887156E3-F55A-4B2E-86A2-044B918EFBC1}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6092535B-6E2D-40E7-BF47-5CA27E44814D}
-	EndGlobalSection
-EndGlobal
